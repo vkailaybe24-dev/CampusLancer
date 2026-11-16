@@ -1,0 +1,5 @@
+Root Cause: The frontend profile lookup logic relied on strict email comparison using JavaScript's equality operator. Differences in capitalization and accidental leading or trailing whitespace caused email addresses to be treated as different values, even when they belonged to the same user.
+
+Technical Impact: The application occasionally failed to identify an existing freelancer profile associated with the logged-in user. As a result, users were redirected to the profile creation form instead of seeing their existing profile and its update options.
+
+Detailed Resolution: Introduced email normalization before performing profile comparisons. Used JavaScript's trim() and toLowerCase() methods to remove unnecessary whitespace and standardize capitalization. The normalized email is then compared with similarly processed email values from the profile records, ensuring more reliable user identification.
