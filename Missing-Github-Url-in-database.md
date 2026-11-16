@@ -1,5 +1,0 @@
-Root Cause: The FreelancerProfiles SQLAlchemy model was updated to include a github_url field. However, the existing MySQL database table was not updated accordingly, resulting in a mismatch between the ORM model and the actual database schema.
-
-Technical Impact: Profile update operations failed with a MySQL OperationalError indicating that the github_url column did not exist. Consequently, users could not successfully save their GitHub portfolio links.
-
-Detailed Resolution: Inspected the existing table structure using MySQL Workbench and manually updated the database schema using an SQL ALTER TABLE statement. Added the missing column using ALTER TABLE freelancer_profiles ADD COLUMN github_url VARCHAR(255) DEFAULT NULL;. This synchronized the database structure with the SQLAlchemy model.
