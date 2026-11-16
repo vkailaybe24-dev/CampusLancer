@@ -1,0 +1,3 @@
+Issue: An AttributeError occurred during password hashing initialization because newer releases of the bcrypt package (v4.0+) restructured internal metadata hooks that passlib relied on, blocking /api/register and /api/login routes.
+
+Resolution: Removed the passlib dependency entirely and implemented direct cryptographic handling in main.py using native bcrypt functions (bcrypt.gensalt(), bcrypt.hashpw(), and bcrypt.checkpw()).
